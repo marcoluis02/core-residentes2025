@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
-from app.services.carros_service import CarrosService
+from app.services.albums_service import AlbumService
 
 class ServiceFactory:
     def __init__(self, db: Session):
         self.db = db
 
     def carros_service(self):
-        return CarrosService(self.db)
+        return AlbumsService(self.db)

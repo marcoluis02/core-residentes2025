@@ -1,7 +1,7 @@
 from app.core.basecrud import BaseCRUD
-from app.models.carros import Carro
-from app.interfaces.i_carros_repository import ICarrosRepository
+from app.models.albums import Album
+from app.interfaces.i_albums_repository import IAlbumsRepository
 
-class CarrosRepository(BaseCRUD[Carro], ICarrosRepository):
+class CarrosRepository(BaseCRUD[Album], IAlbumsRepository):
     def __init__(self, db):
-        super().__init__(Carro, db)
+        super().__init__(Album, db)

@@ -1,9 +1,9 @@
 import os
 from sqlalchemy import text
 from sqlalchemy.orm import Session
-from app.interfaces.i_carros_repository import ICarrosRepository
-from app.repositories.carros_repository import CarrosRepository 
-from app.services.carros_service import CarrosService
+from app.interfaces.i_albums_repository import IAlbumsRepository
+from app.repositories.albums_repository import AlbumsRepository 
+from app.services.albums_service import AlbumsService
 
 #Cuando se agreguen más repositorios, se puede usar este factory method para elegir entre ellos
 def factory_method(func):
@@ -19,10 +19,10 @@ def set_search_schema(db: Session | None):
     print(f"Setting search path to DB_SCHEMA") #DB_SCHEMA is set in .env
     db.execute(text(f"SET search_path TO DB_SCHEMA")) #DB_SCHEMA is set in .env
 
-def get_carros_repository(db: Session) -> ICarrosRepository:
+def get_albums_repository(db: Session) -> IAlbumsRepository:
     #se podría agregar lógica para elegir entre diferentes repositorios
-    return CarrosRepository(db)
+    return AlbumsRepository(db)
 
-def get_carros_service(db: Session) -> CarrosService:
-    repository = get_carros_repository(db)
-    return CarrosService(repository, db)
+def get_albums_service(db: Session) -> AlbumsService:
+    repository = get_albums_repository(db)
+    return AlbumsService(repository, db)
