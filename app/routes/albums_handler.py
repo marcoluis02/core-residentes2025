@@ -18,23 +18,23 @@ def create_album(data: AlbumCreateDTO, db: Session = Depends(get_db)):
 #consultas personalizadas
 @router.get("/get_where", response_model=list[AlbumResponseDTO])
 def buscar_albums(
-    brand: Optional[str] = Query(None, description="Marca del carro"),
-    year: Optional[int] = Query(None, description="Año del carro"),
-    precio_min: Optional[float] = Query(None, description="Precio mínimo"),
-    precio_max: Optional[float] = Query(None, description="Precio máximo"),
+    nombre: Optional[str] = Query(None, description="Nombre del Album"),
+    autor: Optional[str] = Query(None, description="Autor del Album"),
+    año_min: Optional[int] = Query(None, description="Año mínimo"),
+    año_max: Optional[int] = Query(None, description="Año máximo"),
     db: Session = Depends(get_db)
 ):
     service = get_albums_service(db)
 
     condiciones = []
-    if brand:
-        condiciones.append(Album.brand == brand)
-    if year:
-        condiciones.append(Album.year == year)
-    if precio_min is not None:
-        condiciones.append(Album.price >= precio_min)
-    if precio_max is not None:
-        condiciones.append(Album.price <= precio_max)
+    if nombre:
+        condiciones.append(Album.nombre == nombre)
+    if autor:
+        condiciones.append(Album.autor == autor)
+    if año_min is not None:
+        condiciones.append(Album.año >= año_min)
+    if año_max is not None:
+        condiciones.append(Album.año <= año_max)
 
     albums = service.get_where(*condiciones) if condiciones else service.list_all()
 

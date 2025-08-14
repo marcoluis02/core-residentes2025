@@ -1,11 +1,10 @@
 from sqlalchemy import Column, Integer, String
 from app.core.db import Base
 
-class Carro(Base):
-    __tablename__ = "carros"
+class Album(Base):
+    __tablename__ = "albums"
 
     id = Column(Integer, primary_key=True, index=True)
-    brand = Column(String, nullable=False)
-    model = Column(String, nullable=False)
-    year = Column(Integer, nullable=False)
-    price = Column(Integer, nullable=False)
+    nombre = Column(String, nullable=False)
+    autor = Column(String, nullable=False)
+    año = Column(Integer, nullable=False)
