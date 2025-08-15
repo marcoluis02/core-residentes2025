@@ -2,6 +2,7 @@ from typing import Protocol, Any
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from app.models.carros import Carro
 
+
 class ICarrosRepository(Protocol):
     def create(self, obj: Carro) -> Carro:
         ...
